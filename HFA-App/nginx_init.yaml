@@ -1,0 +1,10 @@
+#cloud-config
+disable_root: false
+repo_update: true
+repo_upgrade: all
+
+packages:
+ - nginx
+
+runcmd:
+ - systemctl restart nginx
