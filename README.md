@@ -19,6 +19,14 @@ gitGraph
     checkout dev
     branch k8sbackend
     commit id: "kubernetes backend"
+    checkout dev
+    commit id: "Change baseline"
+    checkout localbackend
+    merge dev
+    checkout obsbackend
+    merge dev
+    checkout k8sbackend
+    merge dev
 ```
 
 
