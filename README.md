@@ -10,6 +10,7 @@ HFA follows key design principles across different design areas which accommodat
 gitGraph
     commit id: "Document"
     branch dev
+    commit id: "Common Code"
     branch localbackend
     branch obsbackend
     branch k8sbackend
