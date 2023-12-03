@@ -12,8 +12,13 @@ gitGraph
     branch dev
     commit id: "Common Code"
     branch localbackend
+    commit id: "local backend"
+    checkout dev
     branch obsbackend
+    commit id: "OBS backend"
+    checkout dev
     branch k8sbackend
+    commit id: "kubernetes backend"
 ```
 
 
