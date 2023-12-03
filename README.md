@@ -1,15 +1,20 @@
-# HFA Reference Architecture Implementation workshop
+# HFA Reference Architecture Implementation Workshop
 
-:zap: This workshop requires Terraform 1.6.3 or above, Please check you terraform version with ```terraform version``` command before getting started.
-
-:information_source: If you participate in a workshop hosted by Huawei Cloud Professional Team, Follow the field guidance on environment setup. If you do self-paced learning and Terraform is not installed on your laptop or your server, Please refer to the following download link  [Download Link](https://developer.hashicorp.com/terraform/downloads) to install Terraform properly.
-```
-https://developer.hashicorp.com/terraform/downloads
-```
-
-HFA is a well-architected, multi-account Huawei Cloud environment that is a starting point from which you can deploy workloads and applications with confidence in security and infrastructure. It provides a baseline that covers multiple design areas including multi-account architecture, identity and access management, governance, data security, network design, and logging.
+HFA is a well-architected, multi-account Huawei Cloud foundation environment upon which you can deploy workloads and applications with confidence in security and infrastructure. It provides a baseline that covers multiple design areas including multi-account architecture, identity and access management, governance, data security, network design, and logging.
 
 HFA follows key design principles across different design areas which accommodate all application portfolios and enable application migration, modernization, and innovation at scale.
+
+## Repository Structure
+
+```mermaid
+gitGraph
+    commit id: "Document"
+    branch dev
+    branch localbackend
+    branch obsbackend
+    branch k8sbackend
+```
+
 
 This is reference implementation of Huaweicloud HFA for workshop purpose, this implementation will initialize the following accounts in HFA:
 * Centralized IAM Account
