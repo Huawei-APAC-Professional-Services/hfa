@@ -55,9 +55,10 @@ git clone https://github.com/Huawei-APAC-Professional-Services/hfa.git
 ```
 ![Clone Repo](./images/100-level/001-clone-repo-01.png)
 
-2.  checkout the `level-100` branch and check you are working on `level-100` branch with the following command
+2.  checkout the `localbackend` branch and check you are working on `localbackend` branch with the following command
 ```
-git checkout -b level-100 remotes/origin/level-100
+cd hfa
+git checkout -b localbackend remotes/origin/localbackend
 git branch -a
 ```
 ![Clone Repo](./images/100-level/001-clone-repo-04.png)
@@ -70,11 +71,7 @@ git branch -a
 
 ### Provisioning IAM Resources
 
-1. Change to `hfa` directory in the terminal
-```
-cd hfa
-```
-2. Get the AK/SK from [Create IAM User in Central IAM Account](#create-iam-user-in-central-iam-account) and Set the environment variables with the following command
+1. Get the AK/SK from [Create IAM User in Central IAM Account](#create-iam-user-in-central-iam-account) and Set the environment variables with the following command
 ```
 export HW_ACCESS_KEY="anaccesskey"
 export HW_SECRET_KEY="asecretkey"
@@ -83,20 +80,19 @@ export HW_REGION_NAME="ap-southeast-3"
 
 ![env](./images/100-level/004-hfa-iam-init-01.png)
 
-3. Execute the following command to initialize the terraform
+2. Execute the following command to initialize the terraform
 ```
 terraform -chdir=HFA-IAM/ init
 ```
 ![initialization](./images/100-level/004-hfa-iam-init-02.png)
 ![initialization](./images/100-level/004-hfa-iam-init-03.png)
 
-4. Execute the following command to format and validate the `HFA-IAM` configuration, if there is any errors raised, you need to solve the error to continue the workshop
+3. Execute the following command to format and validate the `HFA-IAM` configuration, if there is any errors raised, you need to solve the error to continue the workshop
 ```
-terraform -chdir=HFA-IAM/ fmt
 terraform -chdir=HFA-IAM/ validate
 ```
 
-5. Execute the following command to apply the `HFA-IAM` configuration, when you are prompted to provide confirmation, type `yes`
+4. Execute the following command to apply the `HFA-IAM` configuration, when you are prompted to provide confirmation, type `yes`
 ```
 terraform -chdir=HFA-IAM/ apply
 ```
