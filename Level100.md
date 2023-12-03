@@ -71,7 +71,9 @@ git branch -a
 
 ### Provisioning IAM Resources
 
-1. Get the AK/SK from [Create IAM User in Central IAM Account](#create-iam-user-in-central-iam-account) and Set the environment variables with the following command
+1. Open the `HFA-IAM/terraform.tfvars` file in VS Code and change the value according to your environment.
+
+2. Get the AK/SK from [Create IAM User in Central IAM Account](#create-iam-user-in-central-iam-account) and Set the environment variables with the following command
 ```
 export HW_ACCESS_KEY="anaccesskey"
 export HW_SECRET_KEY="asecretkey"
@@ -80,19 +82,24 @@ export HW_REGION_NAME="ap-southeast-3"
 
 ![env](./images/100-level/004-hfa-iam-init-01.png)
 
-2. Execute the following command to initialize the terraform
+3. Make sure you are in `hfa` directory in the terminal
+```
+pwd
+```
+
+4. Execute the following command to initialize the terraform
 ```
 terraform -chdir=HFA-IAM/ init
 ```
 ![initialization](./images/100-level/004-hfa-iam-init-02.png)
 ![initialization](./images/100-level/004-hfa-iam-init-03.png)
 
-3. Execute the following command to format and validate the `HFA-IAM` configuration, if there is any errors raised, you need to solve the error to continue the workshop
+5. Execute the following command to format and validate the `HFA-IAM` configuration, if there is any errors raised, you need to solve the error to continue the workshop
 ```
 terraform -chdir=HFA-IAM/ validate
 ```
 
-4. Execute the following command to apply the `HFA-IAM` configuration, when you are prompted to provide confirmation, type `yes`
+6. Execute the following command to apply the `HFA-IAM` configuration, when you are prompted to provide confirmation, type `yes`
 ```
 terraform -chdir=HFA-IAM/ apply
 ```
@@ -101,38 +108,32 @@ terraform -chdir=HFA-IAM/ apply
 
 ### Provisioning HFA Base Resources
 
-1. Change to `hfa` directory in the terminal
+1. Make sure you are in `hfa` directory in the terminal
 ```
-cd hfa
+pwd
 ```
-
 2. Execute the following command to format and validate the `HFA-Base` configuration, if there is any errors raised, you need to solve the error to continue the workshop
 ```
-terraform -chdir=HFA-Base/ fmt
 terraform -chdir=HFA-Base/ init
 terraform -chdir=HFA-Base/ validate
 ```
 3. Execute the following command to apply the `HFA-Base` configuration, when you are prompted to provide confirmation, type `yes`
 ```
-terraform -chdir=HFA-Base/ plan
 terraform -chdir=HFA-Base/ apply
 ```
 
 ### Provisioning HFA Network Resources in Transit Account
-1. Change to `hfa` directory in the terminal
+1. Make sure you are in `hfa` directory in the terminal
 ```
-cd hfa
+pwd
 ```
-
 2. Execute the following command to format and validate the `HFA-Network` configuration, if there is any errors raised, you need to solve the error to continue the workshop
 ```
-terraform -chdir=HFA-Network/ fmt
 terraform -chdir=HFA-Network/ init
 terraform -chdir=HFA-Network/ validate
 ```
 3. Execute the following command to apply the `HFA-Network` configuration, when you are prompted to provide confirmation, type `yes`
 ```
-terraform -chdir=HFA-Network/ plan
 terraform -chdir=HFA-Network/ apply
 ```
 4. Execute the following commands to get the account id of `Application Account` and `Common Account`
@@ -152,56 +153,50 @@ terraform -chdir=HFA-IAM/ output hfa_common_account_id
 ![ER Sharing](./images/100-level/007-hfa-Network-ER-02.png)
 
 ### Provisioning HFA Network Resources in Member Account
-1. Change to `hfa` directory in the terminal
+1. Make sure you are in `hfa` directory in the terminal
 ```
-cd hfa
+pwd
 ```
 
 2. Execute the following command to format and validate the `HFA-Network-workloads` configuration, if there is any errors raised, you need to solve the error to continue the workshop
 ```
-terraform -chdir=HFA-Network-workloads/ fmt
 terraform -chdir=HFA-Network-workloads/ init
 terraform -chdir=HFA-Network-workloads/ validate
 ```
 3. Execute the following command to apply the `HFA-Network-workloads` configuration, when you are prompted to provide confirmation, type `yes`
 ```
-terraform -chdir=HFA-Network-workloads/ plan
 terraform -chdir=HFA-Network-workloads/ apply
 ```
 
 ### Provisioning HFA Application Resources in Application Account
-1. Change to `hfa` directory in the terminal
+1. Make sure you are in `hfa` directory in the terminal
 ```
-cd hfa
+pwd
 ```
 
 2. Execute the following command to format and validate the `HFA-App` configuration, if there is any errors raised, you need to solve the error to continue the workshop
 ```
-terraform -chdir=HFA-App/ fmt
 terraform -chdir=HFA-App/ init
 terraform -chdir=HFA-App/ validate
 ```
 3. Execute the following command to apply the `HFA-App` configuration, when you are prompted to provide confirmation, type `yes`
 ```
-terraform -chdir=HFA-App/ plan
 terraform -chdir=HFA-App/ apply
 ```
 
 ### Integrating Application with HFA in Application Account
-1. Change to `hfa` directory in the terminal
+1. Make sure you are in `hfa` directory in the terminal
 ```
-cd hfa
+pwd
 ```
 
 2. Execute the following command to format and validate the `HFA-Integration` configuration, if there is any errors raised, you need to solve the error to continue the workshop
 ```
-terraform -chdir=HFA-Integration/ fmt
 terraform -chdir=HFA-Integration/ init
 terraform -chdir=HFA-Integration/ validate
 ```
 3. Execute the following command to apply the `HFA-Integration` configuration, when you are prompted to provide confirmation, type `yes`
 ```
-terraform -chdir=HFA-Integration/ plan
 terraform -chdir=HFA-Integration/ apply
 ```
 
@@ -210,7 +205,13 @@ terraform -chdir=HFA-Integration/ apply
 ![validation](./images/100-level/008-hfa-validate_02.png)
 
 ## Destroy workshop environment
-After you have completed the testing, Please execute the following commands to delete all the resources created during the workshop
+After you have completed the testing, you can help to delete all resources created by this workshop, this is the east way to clean up.
+
+1. Make sure you are in `hfa` directory in the terminal
+```
+pwd
+```
+2. Execute the following commands to delete all the resources created during the workshop
 ```
 terraform -chdir=HFA-Integration/ destroy
 terraform -chdir=HFA-App/ destroy
