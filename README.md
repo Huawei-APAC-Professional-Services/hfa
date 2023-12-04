@@ -4,7 +4,11 @@ HFA is a well-architected, multi-account Huawei Cloud foundation environment upo
 
 HFA follows key design principles across different design areas which accommodate all application portfolios and enable application migration, modernization, and innovation at scale.
 
+This workshop is divided to three different level according to the complexity
+
 ## Repository Structure
+ 
+
 
 ```mermaid
 gitGraph
@@ -62,8 +66,4 @@ The reference implementation contains multiple modules that are corresponding to
 `HFA-Network` and `HFA-Network-worklaods` are using the same credential but will write to different state file to avoid state file corruption. The splitting of network resources is the result of lacking API support from relevant network services. Before we can apply configurations in `HFA-Network-worklaods`, we need to do some manual configurations from console like sharing ER in the `Transit Account` with other member accounts that need a vpc network.
 
 In the future, if the APIs are available, we can merge the two different modules into one.
-
-
-## Workshop Guidance
-If you would like to evaluate the reference HFA implementation, you can to to [workshop](./workshop/) directory for detail guidance.
 
