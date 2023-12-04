@@ -213,13 +213,39 @@ terraform -chdir=HFA-IAM/ apply
 ```
 pwd
 ```
-
-2. Execute the following command to format and validate the `HFA-Base` configuration, if there is any errors raised, you need to solve the error to continue the workshop
+2. Get the AK/SK from [Create IAM User in Central IAM Account](#create-iam-user-in-central-iam-account) and Set the environment variables with the following command
 ```
-terraform -chdir=HFA-Base/ init
+export AWS_ACCESS_KEY_ID="anaccesskey"
+export AWS_SECRET_ACCESS_KEY="asecretkey"
+export AWS_DEFAULT_REGION="ap-southeast-3"
+```  
+3. Get the AK/SK for `IAM-Base` level with the following commands
+```
+terraform -chdir=HFA-IAM/ output hfa_iam_pipeline_base_ak
+terraform -chdir=HFA-IAM/ output hfa_iam_pipeline_base_sk
+```
+
+4. Setup environment variables for accessing OBS with AK/SK from last step
+```
+export AWS_ACCESS_KEY_ID="anaccesskey"
+export AWS_SECRET_ACCESS_KEY="asecretkey"
+export AWS_DEFAULT_REGION="ap-southeast-3"
+export HW_ACCESS_KEY="anaccesskey"
+export HW_SECRET_KEY="asecretkey"
+export HW_REGION_NAME="ap-southeast-3"
+```
+
+2. Open `HFA-IAM/obs.tfbackend` in  VS Code and change the `bucket` parameter to the one you created in [Create OBS bucket in Central IAM Account](#create-obs-bucket-in-central-iam-account)
+![Change backend config](./images/obsbackend/004_apply_hfa_iam_01.png)
+
+3. Open `HFA-IAM/terraform.tfvars` in VS Code and change the `hfa_terraform_state_bucket` parameter to the one you created in [Create OBS bucket in Central IAM Account]
+
+4. Execute the following command to format and validate the `HFA-Base` configuration, if there is any errors raised, you need to solve the error to continue the workshop
+```
+terraform -chdir=HFA-Base/ init -backend-config="obs.tfbackend"
 terraform -chdir=HFA-Base/ validate
 ```
-3. Execute the following command to apply the `HFA-Base` configuration, when you are prompted to provide confirmation, type `yes`
+5. Execute the following command to apply the `HFA-Base` configuration, when you are prompted to provide confirmation, type `yes`
 ```
 terraform -chdir=HFA-Base/ apply
 ```
