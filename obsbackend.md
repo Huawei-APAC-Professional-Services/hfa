@@ -193,4 +193,10 @@ export HW_REGION_NAME="ap-southeast-3"
 3. Open `HFA-IAM/obs.tfbackend` in  VS Code and change the `bucket` parameter to the one you created in [Create OBS bucket in Central IAM Account](#create-obs-bucket-in-central-iam-account)
 ![Change backend config](./images/obsbackend/004_apply_hfa_iam_01.png)
 
-4. Open ``
+4. Open `HFA-IAM/terraform.tfvars` in VS Code and change the `hfa_terraform_state_bucket` parameter to the one you created in [Create OBS bucket in Central IAM Account](#create-obs-bucket-in-central-iam-account)
+![Change backend config](./images/obsbackend/004_apply_hfa_iam_02.png)
+
+5. Execute the following command to init and validate the configurations
+```
+terraform -chdir=HFA-IAM/ init -backend-config="obs.tfbackend"
+```
