@@ -10,12 +10,6 @@ variable "hfa_terraform_state_bucket" {
   description = "OBS Bucket for storing terraform state"
 }
 
-variable "hfa_terraform_state_obs_endpoint" {
-  type        = string
-  default     = "https://obs.ap-southeast-3.myhuaweicloud.com"
-  description = "OBS endpoint for terraform state storage"
-}
-
 variable "hfa_iam_state_key" {
   type        = string
   default     = "hfa-iam/terraform.tfstate"
