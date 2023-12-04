@@ -1,10 +1,10 @@
 # HFA Reference Architecture Implementation Workshop
 
-HFA is a well-architected, multi-account Huawei Cloud foundation environment upon which you can deploy workloads and applications with confidence in security and infrastructure. It provides a baseline that covers multiple design areas including multi-account architecture, identity and access management, governance, data security, network design, and logging.
+HFA is a well-architected, multi-account Huawei Cloud foundation environment in which you can deploy workloads and applications with confidence in security and infrastructure. It provides a baseline that covers multiple design areas including multi-account architecture, identity and access management, governance, data security, network design, and logging.
 
 HFA follows key design principles across different design areas which accommodate all application portfolios and enable application migration, modernization, and innovation at scale.
 
-This workshop is divided to three different level according to the complexity
+This workshop is divided to three different level according to the complexity, every level is corresponding to a different branch.
 
 ## Repository Structure
  
