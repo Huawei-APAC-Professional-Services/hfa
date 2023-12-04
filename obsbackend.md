@@ -389,3 +389,14 @@ terraform -chdir=HFA-Integration/ validate
 ```
 terraform -chdir=HFA-Integration/ apply
 ```
+
+## Destroy HFA with Terraform
+1. Execute the following commands to destroy `HFA-Integration` configurations
+```
+terraform -chdir=HFA-Integration/ destroy
+terraform -chdir=HFA-App/ destroy
+terraform -chdir=HFA-Network-workloads/ destroy
+terraform -chdir=HFA-Network/ destroy
+terraform -chdir=HFA-Base/ destroy
+terraform -chdir=HFA-IAM/ destroy
+```
