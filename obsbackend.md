@@ -248,7 +248,7 @@ terraform -chdir=HFA-Base/ validate
 terraform -chdir=HFA-Base/ apply
 ```
 
-### Provisioning HFA Network Resources in Transit Account
+### Provisioning HFA Network Resources
 1. Make sure you are in `hfa` directory in the terminal
 ```
 pwd
@@ -265,7 +265,13 @@ terraform -chdir=HFA-IAM/ output hfa_iam_pipeline_network_ak
 terraform -chdir=HFA-IAM/ output hfa_iam_pipeline_network_sk
 ```
 
-4. Setup environment variables for accessing OBS with AK/SK from last step
+4. Get the `Application Account` and `Common Account` id with the following commands
+```
+terraform -chdir=HFA-IAM/ output hfa_app_account_id
+terraform -chdir=HFA-IAM/ output hfa_common_account_id
+```
+
+5. Setup environment variables for accessing OBS with AK/SK from step 3.
 ```
 export AWS_ACCESS_KEY_ID="anaccesskey"
 export AWS_SECRET_ACCESS_KEY="asecretkey"
@@ -274,15 +280,36 @@ export HW_ACCESS_KEY="anaccesskey"
 export HW_SECRET_KEY="asecretkey"
 export HW_REGION_NAME="ap-southeast-3"
 ```
-5. Open `HFA-Base/s3-backend.tf` in  VS Code and change the `bucket` parameter to the one you created in [Create OBS bucket in Central IAM Account](#create-obs-bucket-in-central-iam-account)
+
+6. Open `HFA-Base/s3-backend.tf` in  VS Code and change the `bucket` parameter to the one you created in [Create OBS bucket in Central IAM Account](#create-obs-bucket-in-central-iam-account)
 ![Change backend config](./images/obsbackend/006_apply_hfa_network_01.png)
 
-6. Execute the following command to format and validate the `HFA-Base` configuration, if there is any errors raised, you need to solve the error to continue the workshop
+7. Execute the following command to format and validate the `HFA-Base` configuration, if there is any errors raised, you need to solve the error to continue the workshop
 ```
 terraform -chdir=HFA-Network/ init
 terraform -chdir=HFA-Network/ validate
 ```
-7. Execute the following command to apply the `HFA-Network` configuration, when you are prompted to provide confirmation, type `yes`
+8. Execute the following command to apply the `HFA-Network` configuration, when you are prompted to provide confirmation, type `yes`
 ```
 terraform -chdir=HFA-Network/ apply
+```
+9. Log in to `Transit Account` and Search `Enterprise Router` service through `Service List` on the left side pannel
+![ER Sharing](./images/100-level/006-hfa-Network-apply-01.png)
+
+10. On the ER service page, Click `Manage Sharing`
+![ER Sharing](./images/100-level/007-hfa-Network-ER-01.png)
+
+11. Sharing the ER with `Application Account` and `Common Account` through the account ID you get in step 4.
+![ER Sharing](./images/100-level/007-hfa-Network-ER-02.png)
+
+12. Open `HFA-Base/s3-backend.tf` in  VS Code and change the `bucket` parameter to the one you created in [Create OBS bucket in Central IAM Account](#create-obs-bucket-in-central-iam-account)
+
+13. Execute the following command to format and validate the `HFA-Network-workloads` configuration, if there is any errors raised, you need to solve the error to continue the workshop
+```
+terraform -chdir=HFA-Network-workloads/ init
+terraform -chdir=HFA-Network-workloads/ validate
+```
+14. Execute the following command to apply the `HFA-Network-workloads` configuration, when you are prompted to provide confirmation, type `yes`
+```
+terraform -chdir=HFA-Network-workloads/ apply
 ```

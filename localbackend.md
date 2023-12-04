@@ -147,7 +147,7 @@ terraform -chdir=HFA-IAM/ output hfa_common_account_id
 6. On the ER service page, Click `Manage Sharing`
 ![ER Sharing](./images/100-level/007-hfa-Network-ER-01.png)
 
-7. Sharing the ER with `Application Account` and `Common Account` through the account ID you get on step 4.
+7. Sharing the ER with `Application Account` and `Common Account` through the account ID you get in step 4.
 ![ER Sharing](./images/100-level/007-hfa-Network-ER-02.png)
 
 ### Provisioning HFA Network Resources in Member Account
