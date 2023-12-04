@@ -235,15 +235,15 @@ export HW_SECRET_KEY="asecretkey"
 export HW_REGION_NAME="ap-southeast-3"
 ```
 
-2. Open `HFA-Base/s3-backend.tf` in  VS Code and change the `bucket` parameter to the one you created in [Create OBS bucket in Central IAM Account](#create-obs-bucket-in-central-iam-account)
+5. Open `HFA-Base/s3-backend.tf` in  VS Code and change the `bucket` parameter to the one you created in [Create OBS bucket in Central IAM Account](#create-obs-bucket-in-central-iam-account)
 ![Change backend config](./images/obsbackend/005_apply_hfa_base_01.png)
 
-4. Execute the following command to format and validate the `HFA-Base` configuration, if there is any errors raised, you need to solve the error to continue the workshop
+6. Execute the following command to format and validate the `HFA-Base` configuration, if there is any errors raised, you need to solve the error to continue the workshop
 ```
 terraform -chdir=HFA-Base/ init
 terraform -chdir=HFA-Base/ validate
 ```
-5. Execute the following command to apply the `HFA-Base` configuration, when you are prompted to provide confirmation, type `yes`
+7. Execute the following command to apply the `HFA-Base` configuration, when you are prompted to provide confirmation, type `yes`
 ```
 terraform -chdir=HFA-Base/ apply
 ```
@@ -262,7 +262,7 @@ export AWS_DEFAULT_REGION="ap-southeast-3"
 3. Get the AK/SK for `IAM-Network` level with the following commands
 ```
 terraform -chdir=HFA-IAM/ output hfa_iam_pipeline_network_ak
-terraform -chdir=HFA-IAM/ output hhfa_iam_pipeline_network_sk
+terraform -chdir=HFA-IAM/ output hfa_iam_pipeline_network_sk
 ```
 
 4. Setup environment variables for accessing OBS with AK/SK from last step
@@ -274,4 +274,15 @@ export HW_ACCESS_KEY="anaccesskey"
 export HW_SECRET_KEY="asecretkey"
 export HW_REGION_NAME="ap-southeast-3"
 ```
+5. Open `HFA-Base/s3-backend.tf` in  VS Code and change the `bucket` parameter to the one you created in [Create OBS bucket in Central IAM Account](#create-obs-bucket-in-central-iam-account)
+![Change backend config](./images/obsbackend/006_apply_hfa_network_01.png)
 
+6. Execute the following command to format and validate the `HFA-Base` configuration, if there is any errors raised, you need to solve the error to continue the workshop
+```
+terraform -chdir=HFA-Network/ init
+terraform -chdir=HFA-Network/ validate
+```
+7. Execute the following command to apply the `HFA-Network` configuration, when you are prompted to provide confirmation, type `yes`
+```
+terraform -chdir=HFA-Network/ apply
+```
