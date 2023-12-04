@@ -1,18 +1,3 @@
-resource "huaweicloud_identity_agency" "hfa_app_admin" {
-  provider              = huaweicloud.app
-  name                  = "hfa_app_admin"
-  description           = "Manage all resources except network and security"
-  delegated_domain_name = var.hfa_iam_account_name
-
-  all_resources_roles = [
-    "VPC ReadOnlyAccess",
-    "CCI FullAccess",
-    "ECS FullAccess",
-    "EVS FullAccess",
-    "ELB FullAccess"
-  ]
-}
-
 resource "huaweicloud_identity_group" "hfa_iam_pipeline_app" {
   name        = var.hfa_iam_account_app_admin_group_name
   description = "app Group in Central IAM Account allowing app operations in member account"
