@@ -18,6 +18,21 @@ module "app_account_iam_baseline" {
   }
 }
 
+resource "huaweicloud_identity_agency" "hfa_app_admin" {
+  provider              = huaweicloud.app
+  name                  = "hfa_app_admin"
+  description           = "Manage all resources except network and security"
+  delegated_domain_name = var.hfa_iam_account_name
+
+  all_resources_roles = [
+    "VPC ReadOnlyAccess",
+    "CCI FullAccess",
+    "ECS FullAccess",
+    "EVS FullAccess",
+    "ELB FullAccess"
+  ]
+}
+
 output "hfa_app_account_name" {
   value = var.hfa_app_account_name
 }
