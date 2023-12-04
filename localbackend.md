@@ -1,7 +1,5 @@
 # Huawei Foundation Architecture Terraform Implementation Reference
 
-This repository contains terraform codes and guidance for implementing the minimum HFA solution. It's also the standard base upon which you can build your customized HFA.
-
 > [!IMPORTANT]
 > A real HFA is much more complicated than this, You need to talk to your customer to understand their specific business requirements and technology constraints to design the actual HFA for them.  
 

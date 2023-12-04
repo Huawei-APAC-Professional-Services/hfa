@@ -4,6 +4,8 @@ HFA is a well-architected, multi-account Huawei Cloud foundation environment in 
 
 HFA follows key design principles across different design areas which accommodate all application portfolios and enable application migration, modernization, and innovation at scale.
 
+This repository contains terraform codes and guidance for implementing the minimum HFA solution. It's also the standard base upon which you can build your customized HFA.
+
 This workshop is divided to three different level according to the complexity, every level is corresponding to a different branch.
 
 ## Repository Structure
