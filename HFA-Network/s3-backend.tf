@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
     bucket                      = "hfa-terraform-state-now"
-    key                         = "hfa-base/terraform.tfstate"
+    key                         = "hfa-network/terraform.tfstate"
     region                      = "ap-southeast-3"
     endpoints = {
       s3 = "https://obs.ap-southeast-3.myhuaweicloud.com"
