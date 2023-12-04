@@ -313,3 +313,79 @@ terraform -chdir=HFA-Network-workloads/ validate
 ```
 terraform -chdir=HFA-Network-workloads/ apply
 ```
+
+### Provisioning HFA Application Resources in Application Account
+1. Make sure you are in `hfa` directory in the terminal
+```
+pwd
+```
+2. Get the AK/SK from [Create IAM User in Central IAM Account](#create-iam-user-in-central-iam-account) and Set the environment variables with the following command
+```
+export AWS_ACCESS_KEY_ID="anaccesskey"
+export AWS_SECRET_ACCESS_KEY="asecretkey"
+export AWS_DEFAULT_REGION="ap-southeast-3"
+```  
+3. Get the AK/SK for `IAM-App` level with the following commands
+```
+terraform -chdir=HFA-IAM/ output hfa_iam_pipeline_app_ak
+terraform -chdir=HFA-IAM/ output hfa_iam_pipeline_app_sk
+```
+4. Setup environment variables for accessing OBS with AK/SK from step 3.
+```
+export AWS_ACCESS_KEY_ID="anaccesskey"
+export AWS_SECRET_ACCESS_KEY="asecretkey"
+export AWS_DEFAULT_REGION="ap-southeast-3"
+export HW_ACCESS_KEY="anaccesskey"
+export HW_SECRET_KEY="asecretkey"
+export HW_REGION_NAME="ap-southeast-3"
+```
+
+5. Open `HFA-Base/s3-backend.tf` in  VS Code and change the `bucket` parameter to the one you created in [Create OBS bucket in Central IAM Account](#create-obs-bucket-in-central-iam-account)
+
+6. Execute the following command to format and validate the `HFA-App` configuration, if there is any errors raised, you need to solve the error to continue the workshop
+```
+terraform -chdir=HFA-App/ init
+terraform -chdir=HFA-App/ validate
+```
+8. Execute the following command to apply the `HFA-App` configuration, when you are prompted to provide confirmation, type `yes`
+```
+terraform -chdir=HFA-App/ apply
+```
+
+### Integrating Application with HFA in Application Account
+1. Make sure you are in `hfa` directory in the terminal
+```
+pwd
+```
+2. Get the AK/SK from [Create IAM User in Central IAM Account](#create-iam-user-in-central-iam-account) and Set the environment variables with the following command
+```
+export AWS_ACCESS_KEY_ID="anaccesskey"
+export AWS_SECRET_ACCESS_KEY="asecretkey"
+export AWS_DEFAULT_REGION="ap-southeast-3"
+```  
+3. Get the AK/SK for `HFA-Integration` level with the following commands
+```
+terraform -chdir=HFA-IAM/ output hfa_iam_pipeline_integration_ak
+terraform -chdir=HFA-IAM/ output hfa_iam_pipeline_integration_sk
+```
+4. Setup environment variables for accessing OBS with AK/SK from step 3.
+```
+export AWS_ACCESS_KEY_ID="anaccesskey"
+export AWS_SECRET_ACCESS_KEY="asecretkey"
+export AWS_DEFAULT_REGION="ap-southeast-3"
+export HW_ACCESS_KEY="anaccesskey"
+export HW_SECRET_KEY="asecretkey"
+export HW_REGION_NAME="ap-southeast-3"
+```
+
+5. Open `HFA-Base/s3-backend.tf` in  VS Code and change the `bucket` parameter to the one you created in [Create OBS bucket in Central IAM Account](#create-obs-bucket-in-central-iam-account)
+
+6. Execute the following command to format and validate the `HFA-Integration` configuration, if there is any errors raised, you need to solve the error to continue the workshop
+```
+terraform -chdir=HFA-Integration/ init
+terraform -chdir=HFA-Integration/ validate
+```
+8. Execute the following command to apply the `HFA-Integration` configuration, when you are prompted to provide confirmation, type `yes`
+```
+terraform -chdir=HFA-Integration/ apply
+```
