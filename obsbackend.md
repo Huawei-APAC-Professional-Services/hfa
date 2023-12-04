@@ -206,3 +206,20 @@ terraform -chdir=HFA-IAM/ validate
 ```
 terraform -chdir=HFA-IAM/ apply
 ```
+
+### Provisioning HFA Base Resources
+
+1. Make sure you are in `hfa` directory in the terminal
+```
+pwd
+```
+
+2. Execute the following command to format and validate the `HFA-Base` configuration, if there is any errors raised, you need to solve the error to continue the workshop
+```
+terraform -chdir=HFA-Base/ init
+terraform -chdir=HFA-Base/ validate
+```
+3. Execute the following command to apply the `HFA-Base` configuration, when you are prompted to provide confirmation, type `yes`
+```
+terraform -chdir=HFA-Base/ apply
+```
