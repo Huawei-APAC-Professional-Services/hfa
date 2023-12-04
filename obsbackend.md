@@ -168,10 +168,24 @@ cd hfa
 git checkout -b obsbackend remotes/origin/obsbackend
 git branch -a
 ```
-![Clone Repo](./images/100-level/001-clone-repo-04.png)
+![Clone Repo](./images/obsbackend/003_git_clone_01.png)
 
 3. In VS Code, Select `File` icon on the upper left corner
 ![Open Folder](./images/100-level/001-clone-repo-02.png)
 
 4. Select `Open Folder` and select the repo directory `hfa`
 ![Open Folder](./images/100-level/001-clone-repo-03.png)
+
+### Provisioning IAM Resources
+
+1. Open the `HFA-IAM/terraform.tfvars` file in VS Code and change the value according to your environment.
+
+2. Get the AK/SK from [Create IAM User in Central IAM Account](#create-iam-user-in-central-iam-account) and Set the environment variables with the following command
+```
+export AWS_ACCESS_KEY_ID="anaccesskey"
+export AWS_SECRET_ACCESS_KEY="asecretkey"
+export AWS_DEFAULT_REGION="ap-southeast-3"
+export HW_ACCESS_KEY="anaccesskey"
+export HW_SECRET_KEY="asecretkey"
+export HW_REGION_NAME="ap-southeast-3"
+```  
