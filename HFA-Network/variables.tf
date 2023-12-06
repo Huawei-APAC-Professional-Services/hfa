@@ -10,7 +10,7 @@ variable "hfa_er_prod_name" {
   description = "Default Name for Production ER"
 }
 
-variable "hfa_er_prod_azs" {
+variable "hfa_elb_prod_azs" {
   type        = list(string)
   default     = ["ap-southeast-3a", "ap-southeast-3e"]
   description = "Default Name for Production ER"
