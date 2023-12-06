@@ -31,7 +31,7 @@ resource "huaweicloud_elb_loadbalancer" "hfa_transit_prod_ingress" {
 
   l4_flavor_id = data.huaweicloud_elb_flavors.hfa_transit_ingress_prod_elb_flavor.ids[0]
 
-  availability_zone = var.hfa_er_prod_azs
+  availability_zone = var.hfa_elb_prod_azs
 
   ipv4_eip_id = huaweicloud_vpc_eip.hfa_transit_ingress_prod_elb_eip.id
 }
