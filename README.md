@@ -43,14 +43,14 @@ In self-service mode, you will deploy the workshop materials to your own account
 # Repository Structure
 This workshop is divided to multiple levels according to the complexity, every level is corresponding to a different branch. The table below describes  every branch in use in this workshop, you can choose the one that fits your business requirements to start exploring.
 
-| Branch Name | Highlight | Applicable Scenario |
-| ----------- | --------- | --------------------|
-| main | Only provides documents for this repository | / |
-| dev  | for developments purpose, can not run directly<br>because there is backend and data source configuration | development purpose |
-| localbackend | Using local backend, prone to state disruption | test purpose only |
-| obsbackend | OBS bucket is used as remote backend | production ready but use with caution |
-| codearts-obs | OBS bucket is used as remote backend<br>CodeArts is used to orchestrate the provisioning process | High level maturity on DevOps |
-| k8sbackend | Kubernetes is used as remote backend | there is Kubernetes cluster in-place |
+| Branch Name | Highlight | Applicable Scenario | Playbook |
+| ----------- | --------- | --------------------| ---------|
+| main | Only provides documents for this repository | / | / |
+| dev  | for developments purpose, can not run directly<br>because there is backend and data source configuration | development purpose | / |
+| localbackend | Using local backend, prone to state disruption | test purpose only | [Local Backend](./localbackend.md) |
+| obsbackend | OBS bucket is used as remote backend | production ready but use with caution | [OBS Backend](./obsbackend.md) |
+| codearts-obs | OBS bucket is used as remote backend<br>CodeArts is used to orchestrate the provisioning process | High level maturity on DevOps | [CodeArts with OBS Backend](./codearts-obs.md) |
+| k8sbackend | Kubernetes is used as remote backend | there is Kubernetes cluster in-place | [Kubernetes Backend](./k8sbackend.md) |
 
 ```mermaid
 gitGraph
