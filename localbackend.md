@@ -1,7 +1,5 @@
 # Huawei Foundation Architecture Terraform Implementation Reference
 
-This repository contains terraform codes and guidance for implementing the minimum HFA solution. It's also the standard base upon which you can build your customized HFA.
-
 > [!IMPORTANT]
 > A real HFA is much more complicated than this, You need to talk to your customer to understand their specific business requirements and technology constraints to design the actual HFA for them.  
 
@@ -149,7 +147,7 @@ terraform -chdir=HFA-IAM/ output hfa_common_account_id
 6. On the ER service page, Click `Manage Sharing`
 ![ER Sharing](./images/100-level/007-hfa-Network-ER-01.png)
 
-7. Sharing the ER with `Application Account` and `Common Account` through the account ID you get on step 4.
+7. Sharing the ER with `Application Account` and `Common Account` through the account ID you get in step 4.
 ![ER Sharing](./images/100-level/007-hfa-Network-ER-02.png)
 
 ### Provisioning HFA Network Resources in Member Account
