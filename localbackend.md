@@ -4,7 +4,7 @@
 > A real HFA is much more complicated than this, You need to talk to your customer to understand their specific business requirements and technology constraints to design the actual HFA for them.  
 
 ## Introduction
-This is the basic level HFA implementation which relies on Terraform local storage backend to minimize the terraform configuration.
+This is the basic HFA implementation which relies on Terraform local storage backend to minimize the terraform configuration.
 
 > [!CAUTION]
 > Do not use local storage backend in **Production Environment**

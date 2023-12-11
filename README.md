@@ -64,7 +64,7 @@ gitGraph
     commit id: "OBS backend"
     checkout dev
     branch codearts-obs
-    commit id: "CodeArts"
+    commit id: "CodeArts with OBS backend"
     checkout dev
     branch k8sbackend
     commit id: "kubernetes backend"
