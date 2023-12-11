@@ -6,11 +6,39 @@ HFA follows key design principles across different design areas which accommodat
 
 This repository contains terraform codes and guidance for implementing the minimum HFA solution. It's also the standard base upon which you can build your customized HFA.
 
-This workshop is divided to three different level according to the complexity, every level is corresponding to a different branch.
+# Target Audience
 
-## Repository Structure
- 
+We expect that you are familiar with Huawei Cloud and Terraform to get started but it's not mandatory.
+* Architects - wanting to learn the implementation patterns for HFA on Huawei Cloud
+* Site Reliability Engineer/Platform Engineer/DevOps Engineer - wanting to learn how to build their HFA from scratch
+* Developers - interested in integrating business application in HFA
 
+# Prerequisites
+Before we start, we will need to ensure that we have some tools installed on your environment.
+* Terraform
+* VS Code
+
+# Limitations
+Master account in HFA is mainly for billing、budget allocation and HFA environment initialization purpose and there aren't enough Huawei Cloud accounts for the workshop hosted by Huawei Cloud Professional Service Team for APAC, so the workshop excludes the master/main account settings. it only initializes the following accounts in HFA:
+* Cloud Resource Management Account
+* Common Services Account
+* Transit Account
+* Security Account
+* Production Account
+
+:high_brightness: In HFA, the master account also needs to be initialized to implement security baseline and delegate some organization responsibilities to other accounts, Please refer to the following documents to setup the master account
+
+# Repository Structure
+This workshop is divided to multiple levels according to the complexity, every level is corresponding to a different branch. The table below describes  every branch in use in this workshop, you can choose the one that fits your business requirements to start exploring.
+
+| Branch Name | Highlight | Applicable Scenario |
+| ----------- | --------- | --------------------|
+| main | Only provides documents for this repository | / |
+| dev  | for developments purpose, can not run directly<br>because there is backend and data source configuration | development purpose |
+| localbackend | Using local backend, prone to state disruption | test purpose only |
+| obsbackend | OBS bucket is used as remote backend | production ready but use with caution |
+| codearts-obs | OBS bucket is used as remote backend<br>CodeArts is used to orchestrate the provisioning process | High level maturity on DevOps |
+| k8sbackend | Kubernetes is used as remote backend | there is Kubernetes cluster in-place |
 
 ```mermaid
 gitGraph
@@ -23,6 +51,9 @@ gitGraph
     branch obsbackend
     commit id: "OBS backend"
     checkout dev
+    branch codearts-obs
+    commit id: "CodeArts"
+    checkout dev
     branch k8sbackend
     commit id: "kubernetes backend"
     checkout dev
@@ -31,41 +62,33 @@ gitGraph
     merge dev
     checkout obsbackend
     merge dev
+    checkout codearts-obs
+    merge dev
     checkout k8sbackend
     merge dev
 ```
 
-
-This is reference implementation of Huaweicloud HFA for workshop purpose, this implementation will initialize the following accounts in HFA:
-* Centralized IAM Account
-* Common Services Account
-* Transit Account
-* Security Account
-* Production Account(workloads)
-
-:high_brightness: In HFA, the master account also need to be initialized to implement security baseline and delegate some organization responsibilities to other accounts, Due to the accounts limitations of the training workshop environment, this implementation won't do anything to the master account, but budget will be allocated in advance to member accounts.
+All the code changes that are irrelevant to backend configuration are made in `dev` branch and merged to other branches except main branch.
 
 # HFA Terraform Implementation Introduction
 Implementing all HFA elements with Terraform at this stage is not possible because of service limitations. we follow the hierarchy below to implement HFA on Huawei Cloud.
 
-![HFA-Hierarchy](./HFA_Implementation_Hierarchy.png)
+![HFA-Hierarchy](./images/hfa_implementation_hierarchy.png)
 
-By adopting the hierarchy, the complex enterprise environment is isolated into different terraform state files. Different level will use different credential that only can access the corresponding state file and assume designated agency. In principal, Every level in this hierarchy can only write to the state file corresponding to this level but can read the state file one level down and the bottom level state file. But currently we may need to read state file from multiple underlying level due to the incomplete API support from certain services but the principle is that the dependencies on terraform state file are always top-down.
+By adopting the hierarchy, the complex enterprise environment is isolated into different terraform state files. Different level will use different credential that only can access the relevant state file and assume designated agency. In principal, Every level in this hierarchy can only write to the state file corresponding to this level but can read the state file one level down and the bottom level state file. But currently we may need to read state file from multiple underlying level due to the incomplete API support from certain services but the principle is that the dependencies on terraform state file are always top-down.
 
 The current HFA implementation hierarchy only contains four level, but it cloud be expanded to more levels to meet customer scenario. And it is also possible that one level contains multiple state file for different purpose, like at application level, we may prefer splitting it into multiple state file by services or application to meet agile development requirements.
-
-But with this approach, the state file still contains credentials and other sensitive information, normally the state file and relevant DevOps tools should be deployed in `Common Services Account` or dedicated `DevOps Account`, but it will make the implementation more complex, so we will store state file in `Centralized IAM Account` to reduce the complexity for the workshop.
  
 The reference implementation contains multiple modules that are corresponding to the hierarchy, the following table describe this relationship
-|  Module  |  Hierarchy  |
-| -------- | ----------- |
-| HFA-IAM  |     IAM     |
-| HFA-Base |     Base    |
-| HFA-Network<br />HFA-Network-workloads | Network  |
-| HFA-App  | Application |
-| HFA-Integration | Application |
+| Module                | Hierarchy   |
+|-----------------------|-------------|
+| HFA-IAM               | IAM         |
+| HFA-Base              | Base        |
+| HFA-Network           | Network     |
+| HFA-Network-workloads | Network     |
+| HFA-App               | Application |
+| HFA-Integration       | Application |
 
-`HFA-Network` and `HFA-Network-worklaods` are using the same credential but will write to different state file to avoid state file corruption. The splitting of network resources is the result of lacking API support from relevant network services. Before we can apply configurations in `HFA-Network-worklaods`, we need to do some manual configurations from console like sharing ER in the `Transit Account` with other member accounts that need a vpc network.
+`HFA-Network` and `HFA-Network-worklaods` are using the same credential but will write to different state file to avoid state file corruption. The splitting of network resources is the result of lacking API support from relevant network services. Before we can apply configurations in `HFA-Network-worklaods`, we need to do some manual configurations from console like sharing ER in the `Transit Account` with other member accounts that need a vpc network. In the future, if the APIs are available, we can merge the two different modules into one.
 
-In the future, if the APIs are available, we can merge the two different modules into one.
-
+The reason that why `HFA-Integration` exists is that the HFA adopts the centralized traffic control approach on network design. Application team usually doesn't has the permission to change network configuration so we need a additional level to do the job, and the job is the responsibility of network team or security team depends on how the traffic is controlled.
