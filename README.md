@@ -14,9 +14,10 @@ We expect that you are familiar with Huawei Cloud and Terraform to get started b
 * Developers - interested in integrating business application in HFA
 
 # Prerequisites
-Before we start, we will need to ensure that we have some tools installed on your environment.
+Before we start, we will need to ensure that we have some tools installed in your environment.
 * Terraform
 * VS Code
+* git
 
 # Limitations
 Master account in HFA is mainly for billing、budget allocation and HFA environment initialization purpose and there aren't enough Huawei Cloud accounts for the workshop hosted by Huawei Cloud Professional Service Team for APAC, so the workshop excludes the master/main account settings. it only initializes the following accounts in HFA:
@@ -27,6 +28,17 @@ Master account in HFA is mainly for billing、budget allocation and HFA environm
 * Production Account
 
 :high_brightness: In HFA, the master account also needs to be initialized to implement security baseline and delegate some organization responsibilities to other accounts, Please refer to the following documents to setup the master account
+
+# Workshop Options
+This workshop may be run in either a hosted or self-service mode. Please following the guidance below according to your situation to setup the environment.
+
+## Hosted Event
+At an Huawei Cloud hosted event you will be provided with temporary accounts. If you are participating the workshop at a hosted event with a facilitator, you will be provided with several Huawei Cloud accounts and its credentials to access the environment. In order to reduce the time needed to setup the execution environment, you will also be provided with a linux user name and password to access a standard environment with necessary tools installed to complete this workshop.
+
+Please refer to the [guidance](./vscode_remote_server.md) to get started
+
+## Self-Service Option
+In self-service mode, you will deploy the workshop materials to your own accounts. you need five Huawei cloud accounts to complete this workshop.
 
 # Repository Structure
 This workshop is divided to multiple levels according to the complexity, every level is corresponding to a different branch. The table below describes  every branch in use in this workshop, you can choose the one that fits your business requirements to start exploring.
