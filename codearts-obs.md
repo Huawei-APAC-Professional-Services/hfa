@@ -50,4 +50,4 @@ This workshop also demonstrates how to apply Terraform configuration through Cod
 ![ProvideAgentParameter](./images/codearts/006_CreateAgentCommand_01.png)
 12. Click `Generate Command` and `Copy Command` to save the command in your text file for future use
 
-### 
+### Create Build Task to create Agent
