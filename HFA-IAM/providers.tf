@@ -2,7 +2,7 @@ terraform {
   required_providers {
     huaweicloud = {
       source  = "huaweicloud/huaweicloud"
-      version = "1.57.0"
+      version = "1.60.0"
     }
   }
 }
@@ -50,6 +50,3 @@ provider "huaweicloud" {
     domain_name = var.hfa_app_account_name
   }
 }
-
-
-
